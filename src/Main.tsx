@@ -80,6 +80,7 @@ export const schemas = {
   gwongzau: "推導廣州音",
   zaonhe: "推導上海話",
   ayaka_v8: "綾香思考音系",
+  kongping: "推導港拼",
 };
 
 const options = {
@@ -123,7 +124,7 @@ export function fetchFile(input: string, callback: (text: string) => void) {
 }
 
 function schemaCopy(): SchemaState {
-  return { name: "baxter", input: "", original: "", parameters: {}, id: +new Date() };
+  return { name: "kongping", input: "", original: "", parameters: {}, id: +new Date() };
 }
 
 export function joinWithBr(array: (string | JSX.Element)[]) {
@@ -152,18 +153,18 @@ class Main extends React.Component<any, MainState> {
     this.state = {
       schemas: schemaNames.length
         ? schemaNames.map((name, id) => ({
-            name,
-            input: schemaInputs[id],
-            original: "",
-            parameters: schemaParameters[id],
-            id,
-          }))
+          name,
+          input: schemaInputs[id],
+          original: "",
+          parameters: schemaParameters[id],
+          id,
+        }))
         : [schemaCopy()],
       article:
         localStorage.getItem("article") ||
         "遙襟甫暢，逸興遄飛。爽籟發而清風生，纖歌凝而白雲遏。睢園綠竹，氣凌彭澤之樽；鄴水朱華，光照臨川之筆。" +
-          "四美具，二難并。窮睇眄於中天，極娛遊於暇日。天高地迥，覺宇宙之無窮；興盡悲來，識盈虛之有數。望長安於日下，目吳會於雲間。" +
-          "地勢極而南溟深，天柱高而北辰遠。關山難越，誰悲失路之人。萍水相逢，盡是他鄉之客。懷帝閽而不見，奉宣室以何年？",
+        "四美具，二難并。窮睇眄於中天，極娛遊於暇日。天高地迥，覺宇宙之無窮；興盡悲來，識盈虛之有數。望長安於日下，目吳會於雲間。" +
+        "地勢極而南溟深，天柱高而北辰遠。關山難越，誰悲失路之人。萍水相逢，盡是他鄉之客。懷帝閽而不見，奉宣室以何年？",
       option: (localStorage.getItem("option") as Option) || "convertArticle",
       convertVariant: localStorage.getItem("convertVariant") === "true",
       autocomplete: localStorage.getItem("autocomplete") !== "false",
@@ -301,7 +302,7 @@ class Main extends React.Component<any, MainState> {
     }
     try {
       this.setState({ output: handles[this.state.option](), isApplied: true });
-    } catch (err) {}
+    } catch (err) { }
   }
 
   handleCopy() {
