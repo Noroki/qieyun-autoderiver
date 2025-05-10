@@ -81,6 +81,7 @@ export const schemas = {
   zaonhe: "推導上海話",
   ayaka_v8: "綾香思考音系",
   kongping: "推導港拼",
+  sangtong: "推導新塘話",
 };
 
 const options = {
